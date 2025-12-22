@@ -5,6 +5,13 @@ import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.SelectOption;
 import com.microsoft.playwright.options.WaitForSelectorState;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+import java.util.Random;
+
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
 public class PageBase {
 
     protected Page page;
@@ -15,6 +22,8 @@ public class PageBase {
 
     protected String home="//mat-icon[@data-mat-icon-name='home']";
 
+    Robot robot;
+    StringSelection file;
     public void wait_for_element(String element, int time){
         page.waitForSelector(element, new Page.WaitForSelectorOptions()
                 .setState(WaitForSelectorState.VISIBLE)
@@ -44,6 +53,12 @@ public class PageBase {
     public void sendText(String selector, String text) {
         wait_for_element(selector,10);
         page.locator(selector).fill(text);
+    }
+
+    //===========clear text===========
+    public void clearText(String selector) {
+        wait_for_element(selector,10);
+        page.locator(selector).clear();
     }
 
     // ====== Get placeholder ======
@@ -83,6 +98,8 @@ public class PageBase {
                 new Page.GetByRoleOptions().setName(selector)
         ).click();
     }
+
+    //==========click btn with name===========
     public void clickbtns(String selector) {
         page.getByRole(
                 AriaRole.MENUITEM,
@@ -90,9 +107,46 @@ public class PageBase {
         ).click();
     }
 
+    //==============choose drop dwon list================
     public void chosselist(String selector,String text) {
         page.locator(selector)
                 .filter(new Locator.FilterOptions().setHasText(text)).first()
                 .click();
+    }
+
+    // ===============assert alert===========
+    public void assertSuccessAlert(String expectedText) {
+        Locator alert = page.locator("#swal2-html-container");
+
+        alert.waitFor(new Locator.WaitForOptions()
+                .setTimeout(10_000));
+
+        assertThat(alert).containsText(expectedText);
+    }
+
+    public void keypoardclick(String selector) {
+        page.keyboard().press(selector);
+    }
+
+    public static String random12Digits() {
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < 12; i++) {
+            sb.append(random.nextInt(10)); // رقم من 0 إلى 9
+        }
+        return sb.toString();
+    }
+
+    public void addfiles(String filepath) throws AWTException {
+        file = new StringSelection(filepath);
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(file, null);
+        robot = new Robot();
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
     }
 }

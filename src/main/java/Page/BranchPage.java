@@ -23,7 +23,7 @@ public class BranchPage extends PageBase{
         clickButton(home);
         clickButton(datatab);
         clickButton(branch);
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         clickbtn(addbranch);
         Thread.sleep(1000);
         sendText(name,names);

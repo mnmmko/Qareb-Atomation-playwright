@@ -16,6 +16,9 @@ import Page.BranchPage;
 import Page.RegionPage;
 import Page.WalletTypePage;
 import Page.SupplierPage;
+import Page.PaymentColletorPage;
+import Page.UploadcardFilePage;
+import Page.TransferRequestPage;
 
 public class BaseTest {
 
@@ -36,7 +39,12 @@ public class BaseTest {
     static RegionPage rp;
     static WalletTypePage wtp;
     static SupplierPage sp;
+    static PaymentColletorPage pcp;
+    static UploadcardFilePage ucfp;
+    static TransferRequestPage tr;
     static String cardamt=ran2Digits();
+    static String branchname="branch"+ran3Digits();
+    static String supplier="مورد" + ran3Digits();
 
     @BeforeSuite
     @Parameters({"browser"})
@@ -119,4 +127,6 @@ public class BaseTest {
         int number = new Random().nextInt(100_000_000); // 8 digits
         return "09" + String.format("%08d", number);
     }
+
+
 }

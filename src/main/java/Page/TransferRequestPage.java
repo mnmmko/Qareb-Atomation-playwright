@@ -27,7 +27,7 @@ public class TransferRequestPage extends PageBase {
             "(//input[contains(@class,'mat-mdc-autocomplete-trigger')])[2]";
 
     private final String selectItem =
-            "(//span[@class='mdc-list-item__primary-text'])[1]";
+            "mat-option";
 
     private final String amount =
             "//input[@formcontrolname='amount']";
@@ -45,6 +45,7 @@ public class TransferRequestPage extends PageBase {
 
     public void openTransferPage() {
 
+        clickButton(home);
         clickButton(mov);
         clickButton(transfer);
     }
@@ -57,19 +58,17 @@ public class TransferRequestPage extends PageBase {
     ) throws InterruptedException {
 
         clickbtn(addTransfer);
-
-
         clickButton(accountFromInput);
         sendText(accountFromInput, accountFrom);
         Thread.sleep(1000);
-        clickButton(selectItem);
+        chosselist(selectItem,accountFrom);
 
 
         clickButton(accountToInput);
         sendText(accountToInput, accountTo);
         Thread.sleep(1000);
-        clickButton(selectItem);
-
+        chosselist(selectItem,accountTo);
+        Thread.sleep(1000);
         sendText(narration, narr);
         sendText(amount, amt);
         Thread.sleep(500);

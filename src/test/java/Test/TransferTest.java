@@ -14,37 +14,30 @@ import java.io.IOException;
 
 public class TransferTest extends BaseTest {
 
-    LoginPage lp;
-    TransferRequestPage tr;
-    companyCategoryPage cpc;
-
-    @Test(priority = 0)
-    public void testLogin() {
-
-        lp = new LoginPage(page);
-        lp.login("mnabeh1", "12345678");
-    }
 
 
 
-    @Test(priority = 1, dependsOnMethods = "testLogin")
+
+
+
+
+    @Test(priority = 11)
     public void testAddTransferRequest() {
 
         tr = new TransferRequestPage(page);
         tr.openTransferPage();
     }
     @Test(
-            priority = 2,
-            dependsOnMethods = "testAddTransferRequest",
-            dataProvider = "transfer"
+            priority = 12,
+            dependsOnMethods = "testAddTransferRequest"
     )
-    public void testTransferRequest(String accountFrom, String accountTo) throws InterruptedException {
+    public void testTransferRequest() throws InterruptedException {
 
         tr.makeTransfer(
-                accountFrom,
-                accountTo,
+                "أسامة ابراهيم ابولجام مندوب",
+                "مجدالدين جمال الحوات مندوب",
                 "5",
-                accountFrom + " ارسل تحويل الى " + accountTo
+                "أسامة ابراهيم ابولجام مندوب" + " ارسل تحويل الى " + "مجدالدين جمال الحوات مندوب"
         );
     }
 
