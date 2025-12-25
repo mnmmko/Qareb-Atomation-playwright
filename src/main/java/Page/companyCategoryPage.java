@@ -20,10 +20,11 @@ public class companyCategoryPage extends PageBase{
     private final String saveButton = "حفظ";
     private String successmsg=".swal2-html-container";
 
-    public void add_new_company_category(String name_ar,String name_en,String orders){
+    public void add_new_company_category(String name_ar,String name_en,String orders) throws InterruptedException {
         clickButton(datatab);
         clickButton(companycatpage);
         clickButton(addcomcat);
+        Thread.sleep(1000);
         sendText(namear,name_ar);
         sendText(nameen,name_en);
         clickButton(status);
