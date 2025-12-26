@@ -83,7 +83,7 @@ public class BaseTest {
         page = context.newPage();
         page.navigate(url);
 
-        if(System.getenv("compname")==null){
+        if(System.getProperty("cardamt")==null){
             campname="موب"+ran3Digits();
             cardamt=ran2Digits();
         }else {
