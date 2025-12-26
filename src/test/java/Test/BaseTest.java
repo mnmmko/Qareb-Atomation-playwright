@@ -29,7 +29,9 @@ public class BaseTest {
     protected static Page page;
     protected static String url;
 
-    static String campname="موب"+ran3Digits();
+    static String campname="";
+    static String cardamt="";
+
     static String regionname="منظقه" + ran3Digits();
     static cardCategoryPage clp;
     static currencyPage cpt;
@@ -44,7 +46,7 @@ public class BaseTest {
     static UploadcardFilePage ucfp;
     static TransferRequestPage tr;
     static uploadcardPage ucp;
-    static String cardamt=ran2Digits();
+
     static String branchname="branch"+ran3Digits();
     static String supplier="مورد" + ran3Digits();
 
@@ -80,6 +82,15 @@ public class BaseTest {
 
         page = context.newPage();
         page.navigate(url);
+
+        if(System.getProperty("compname")==null){
+            campname="موب"+ran3Digits();
+            cardamt=ran2Digits();
+        }else {
+            campname=System.getProperty("compname").toString();
+            cardamt=System.getProperty("cardamt").toString();
+        }
+
     }
 
     @AfterSuite
