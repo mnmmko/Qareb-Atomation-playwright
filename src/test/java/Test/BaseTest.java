@@ -32,6 +32,9 @@ public class BaseTest {
     static String campname="";
     static String cardamt="";
 
+    static String user="";
+    static String pass="";
+
     static String regionname="منظقه" + ran3Digits();
     static cardCategoryPage clp;
     static currencyPage cpt;
@@ -53,10 +56,15 @@ public class BaseTest {
     @BeforeSuite
     @Parameters({"browser"})
     public void open(String browserName) {
+        
         if(System.getenv("url")==null) {
             url = "http://138.199.218.4:8080/auth/login";
+            user = "mnabeh1";
+            pass="12345678";
         }else {
             url=System.getenv("url");
+            user=System.getenv("username");
+            pass=System.getenv("password");
         }
         playwright = Playwright.create();
 

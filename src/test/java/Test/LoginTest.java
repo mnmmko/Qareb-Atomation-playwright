@@ -13,7 +13,7 @@ public class LoginTest extends BaseTest{
     public void testLogin() {
 
         lp = new LoginPage(page);
-        lp.login("mnabeh1", "12345678");
+        lp.login(user, pass);
     }
 
 
