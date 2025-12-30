@@ -13,6 +13,7 @@ public class UploadcardTest extends BaseTest {
     public void testuplpadcard() throws InterruptedException, IOException, AWTException {
         ucp=new uploadcardPage(page);
         ucp.addcard( campname,cardamt,",","دجون", "2026/10/11","0.02","1","upload file");
+        ucp.accept_upload();
 
     }
 }

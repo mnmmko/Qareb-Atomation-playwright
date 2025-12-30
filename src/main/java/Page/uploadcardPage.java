@@ -89,6 +89,13 @@ public class uploadcardPage extends PageBase{
         clickbtn(confirmup);
         Thread.sleep(1000);
 
+
+
+    }
+
+    public void accept_upload() throws InterruptedException {
+        clickButton(home);
+        clickButton(datatab);
         clickButton(penddinguploads);
         clickButton(sortopt);
         Thread.sleep(1000);
@@ -96,7 +103,6 @@ public class uploadcardPage extends PageBase{
 
         clickbtn(confirmup);
         Thread.sleep(2000);
-
 
     }
 
@@ -107,4 +113,6 @@ public class uploadcardPage extends PageBase{
         }
         return upload;
     }
+
+
 }

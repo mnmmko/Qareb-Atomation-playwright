@@ -15,6 +15,6 @@ public class UploadcardfileTest extends BaseTest{
     public void testuplpadcardfile() throws InterruptedException, IOException, AWTException {
        ucfp=new UploadcardFilePage(page);
         ucfp.addfile( campname,cardamt, "دجون", "2026/10/11","0.02","1","upload file");
-
+        ucfp.accept_upload();
     }
 }
