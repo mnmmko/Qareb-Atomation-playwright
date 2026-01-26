@@ -15,7 +15,7 @@ public class TransferRequestPage extends PageBase {
             "text=المالية";
 
     private final String transfer =
-            "text=التحويلات";
+            "التحويلات";
 
     private final String addTransfer =
             "إضافة تحويل";
@@ -35,6 +35,8 @@ public class TransferRequestPage extends PageBase {
     private final String narration =
             "textarea";
 
+    private String date="//input[@formcontrolname='transferDate']";
+
     private final String saveButton =
             "حفظ";
 
@@ -47,17 +49,19 @@ public class TransferRequestPage extends PageBase {
 
         clickButton(home);
         clickButton(mov);
-        clickButton(transfer);
+        clickbtnexact(transfer);
     }
 
     public void makeTransfer(
             String accountFrom,
             String accountTo,
             String amt,
-            String narr
+            String narr,
+            String dates
     ) throws InterruptedException {
 
         clickbtn(addTransfer);
+        Thread.sleep(1000);
         clickButton(accountFromInput);
         sendText(accountFromInput, accountFrom);
         Thread.sleep(1000);
@@ -72,7 +76,7 @@ public class TransferRequestPage extends PageBase {
         sendText(narration, narr);
         sendText(amount, amt);
         Thread.sleep(500);
-
+        sendText(date, dates);
         clickbtn(saveButton);
 
         waitInvisibleElement(alertSuccess);
